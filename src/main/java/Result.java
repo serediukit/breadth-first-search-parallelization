@@ -5,15 +5,15 @@ import java.util.List;
 public class Result {
     List<Integer> path;
     int length;
-    int[] distance;
+    int[] distances;
 
     public Result(List<Integer> path) {
         this.path = path;
         this.length = path.size() - 1;
     }
 
-    public Result(int[] distance) {
-        this.distance = distance;
+    public Result(int[] distances) {
+        this.distances = distances;
     }
 
     public List<Integer> getPath() {
@@ -24,8 +24,8 @@ public class Result {
         return length;
     }
 
-    public int[] getDistance() {
-        return distance;
+    public int[] getDistances() {
+        return distances;
     }
 
     public void printPath() {
@@ -37,8 +37,11 @@ public class Result {
     }
 
     public void printDistance() {
-        for (int i = 0; i < distance.length; i++) {
-            System.out.println("Distance to " + i + " - " + distance[i]);
+        for (int i = 0; i < distances.length; i++) {
+            if (distances[i] != -1)
+                System.out.println("Distance to " + i + " - " + distances[i]);
+            else
+                System.out.println("Distance to " + i + " - impossible");
         }
         System.out.println();
     }

@@ -10,7 +10,8 @@ public class RandomGraphGenerator {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++)
-                graph[i][j] = rnd.nextInt(2);
+                graph[i][j] = rnd.nextInt(n) >= n / 4 ? 0 : 1;
+
             graph[i][i] = 0;
         }
 

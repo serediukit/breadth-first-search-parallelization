@@ -1,16 +1,13 @@
 package main.java;
 
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 public class BFS {
-    int[][] graph;
-    int size;
+    private final int[][] graph;
+    private final int size;
 
     private int[] distances;
-    CountDownLatch latch;
 
     public BFS(int[][] g) {
         this.graph = g;
@@ -54,6 +51,8 @@ public class BFS {
     }
 
     public Result search(int start) {
+        int[] distances = new int[graph.length];
+        Arrays.fill(distances, -1);
         distances[start] = 0;
 
         Queue<Integer> queue = new LinkedList<>();
@@ -62,7 +61,7 @@ public class BFS {
         while (!queue.isEmpty()) {
             int current = queue.poll();
 
-            for (int neighbor = 0; neighbor < size; neighbor++) {
+            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
                 if (graph[current][neighbor] == 1 && distances[neighbor] == -1) {
                     queue.offer(neighbor);
                     distances[neighbor] = distances[current] + 1;
@@ -73,49 +72,32 @@ public class BFS {
         return new Result(distances);
     }
 
-    public Result parallelSearch(int start) {
-        distances[start] = 0;
+    public Result parallelSearch(int start, int numThreads) {
+        Map<Integer, Integer> distance = new ConcurrentHashMap<>();
+        distance.put(start, 0);
 
-        ExecutorService executor = Executors.newFixedThreadPool(size);
+        Queue<Integer> queue = new ConcurrentLinkedQueue<>();
+        queue.offer(start);
 
-        for (int neighbor = 0; neighbor < size; neighbor++) {
-            if (graph[start][neighbor] == 1 && distances[neighbor] == -1) {
-                executor.execute(new SearchThread(neighbor, start));
-            }
-        }
+        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
-        executor.shutdown();
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
 
-        return new Result(distances);
-    }
-
-    public class SearchThread implements Runnable {
-        private final int vertex;
-        private final int parent;
-
-        public SearchThread(int vertex, int parent) {
-            this.vertex = vertex;
-            this.parent = parent;
-        }
-
-        @Override
-        public void run() {
-            Queue<Integer> queue = new LinkedList<>();
-            queue.offer(vertex);
-
-            while (!queue.isEmpty()) {
-                int current = queue.poll();
-
-                if (distances[current] == -1) {
-                    distances[current] = distances[parent] + 1;
-
-                    for (int neighbor = 0; neighbor < graph.length; neighbor++) {
-                        if (graph[current][neighbor] == 1 && neighbor != parent) {
-                            queue.offer(neighbor);
-                        }
-                    }
+            for (int neighbor = 0; neighbor < size; neighbor++) {
+                if (graph[current][neighbor] == 1 && distance.putIfAbsent(neighbor, distance.get(current) + 1) == null) {
+                    final int finalNeighbor = neighbor;
+                    executor.execute(() -> queue.offer(finalNeighbor));
                 }
             }
         }
+        
+        executor.shutdown();
+
+        for (int i = 0; i < size; i++) {
+            distances[i] = distance.getOrDefault(i, -1);
+        }
+
+        return new Result(distances);
     }
 }

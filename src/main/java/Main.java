@@ -26,17 +26,18 @@ public class Main {
         Result result;
 
         switch (choice) {
-            case 1:
+            case 1 -> {
                 result = bfs.search(start);
                 result.printDistance();
-                break;
-            case 2:
-                result = bfs.parallelSearch(start);
+            }
+            case 2 -> {
+                result = bfs.parallelSearch(start, 5);
                 result.printDistance();
-                break;
-            default:
+            }
+            default -> {
                 result = new Result(new int[1]);
                 result.printPath();
-        };
+            }
+        }
     }
 }
