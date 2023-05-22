@@ -29,9 +29,13 @@ public class Result {
     }
 
     public void printPath() {
+        if (length == -1) {
+            System.out.println("No path");
+            return;
+        }
         System.out.print("Path: ");
         for (Integer p : path)
-            System.out.print(p + " ");
+            System.out.print((p + 1) + " ");
         System.out.println();
         System.out.println("Path length: " + length);
     }
@@ -39,9 +43,9 @@ public class Result {
     public void printDistance() {
         for (int i = 0; i < distances.length; i++) {
             if (distances[i] != -1)
-                System.out.println("Distance to " + i + " - " + distances[i]);
+                System.out.println("Distance to " + (i + 1) + " - " + distances[i]);
             else
-                System.out.println("Distance to " + i + " - impossible");
+                System.out.println("Distance to " + (i + 1) + " - impossible");
         }
         System.out.println();
     }

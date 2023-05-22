@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,6 +9,7 @@ public class Main {
         System.out.println("----");
         System.out.println("1. Search");
         System.out.println("2. Parallel search");
+        System.out.println("3. Search path to Vertex");
         System.out.println("----");
 
         System.out.print("Your choice: ");
@@ -27,16 +29,25 @@ public class Main {
 
         switch (choice) {
             case 1 -> {
-                result = bfs.search(start);
+                result = bfs.search(--start);
                 result.printDistance();
             }
             case 2 -> {
-                result = bfs.parallelSearch(start, 5);
-                result.printDistance();
+                try {
+                    result = bfs.parallelSearch(--start, 5);
+                    result.printDistance();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+            case 3 -> {
+                System.out.print("End node: ");
+                int end = sc.nextInt();
+                result = bfs.searchToVertex(--start, --end);
+                result.printPath();
             }
             default -> {
-                result = new Result(new int[1]);
-                result.printPath();
+                System.out.println("Incorrect input");
             }
         }
     }

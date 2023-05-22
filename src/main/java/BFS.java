@@ -6,7 +6,6 @@ import java.util.concurrent.*;
 public class BFS {
     private final int[][] graph;
     private final int size;
-
     private int[] distances;
 
     public BFS(int[][] g) {
@@ -14,6 +13,66 @@ public class BFS {
         this.size = g.length;
         distances = new int[size];
         Arrays.fill(distances, -1);
+    }
+
+    public Result search(int start) {
+        int[] distances = new int[graph.length];
+        Arrays.fill(distances, -1);
+        distances[start] = 0;
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(start);
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+
+            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
+                if (graph[current][neighbor] == 1 && distances[neighbor] == -1) {
+                    queue.offer(neighbor);
+                    distances[neighbor] = distances[current] + 1;
+                }
+            }
+        }
+
+        return new Result(distances);
+    }
+
+    public Result parallelSearch(int start, int threadCount) throws InterruptedException, ExecutionException {
+        distances[start] = 0;
+
+        ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
+
+        forkJoinPool.invoke(new BFSRecursiveAction(start));
+
+        forkJoinPool.shutdown();
+
+        return new Result(distances);
+    }
+
+    private class BFSRecursiveAction extends RecursiveAction {
+        private final int vertex;
+
+        public BFSRecursiveAction(int vertex) {
+            this.vertex = vertex;
+        }
+
+        @Override
+        protected void compute() {
+            List<BFSRecursiveAction> actions = new ArrayList<>();
+
+            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
+                if (graph[vertex][neighbor] == 1 && (distances[neighbor] == -1 || distances[neighbor] > distances[vertex] + 1)) {
+                    distances[neighbor] = distances[vertex] + 1;
+                    BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
+                    actions.add(action);
+                    action.fork();
+                }
+            }
+
+            for (BFSRecursiveAction action : actions) {
+                action.join();
+            }
+        }
     }
 
     public Result searchToVertex(int start, int end) {
@@ -48,56 +107,5 @@ public class BFS {
         }
 
         return new Result(path);
-    }
-
-    public Result search(int start) {
-        int[] distances = new int[graph.length];
-        Arrays.fill(distances, -1);
-        distances[start] = 0;
-
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(start);
-
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-
-            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
-                if (graph[current][neighbor] == 1 && distances[neighbor] == -1) {
-                    queue.offer(neighbor);
-                    distances[neighbor] = distances[current] + 1;
-                }
-            }
-        }
-
-        return new Result(distances);
-    }
-
-    public Result parallelSearch(int start, int numThreads) {
-        Map<Integer, Integer> distance = new ConcurrentHashMap<>();
-        distance.put(start, 0);
-
-        Queue<Integer> queue = new ConcurrentLinkedQueue<>();
-        queue.offer(start);
-
-        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
-
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-
-            for (int neighbor = 0; neighbor < size; neighbor++) {
-                if (graph[current][neighbor] == 1 && distance.putIfAbsent(neighbor, distance.get(current) + 1) == null) {
-                    final int finalNeighbor = neighbor;
-                    executor.execute(() -> queue.offer(finalNeighbor));
-                }
-            }
-        }
-        
-        executor.shutdown();
-
-        for (int i = 0; i < size; i++) {
-            distances[i] = distance.getOrDefault(i, -1);
-        }
-
-        return new Result(distances);
     }
 }
