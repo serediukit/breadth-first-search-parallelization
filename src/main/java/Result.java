@@ -1,35 +1,45 @@
 package main.java;
 
+import java.util.List;
+
 public class Result {
-    int[] way;
-    int weight;
+    List<Integer> path;
     int length;
+    int[] distance;
 
-    public Result(int[] way, int weight) {
-        this.way = way;
-        this.weight = weight;
-        this.length = way.length - 1;
+    public Result(List<Integer> path) {
+        this.path = path;
+        this.length = path.size() - 1;
     }
 
-    public int[] getWay() {
-        return way;
+    public Result(int[] distance) {
+        this.distance = distance;
     }
 
-    public int getWeight() {
-        return weight;
+    public List<Integer> getPath() {
+        return path;
     }
 
     public int getLength() {
         return length;
     }
 
-    public void print() {
-        System.out.print("Way: ");
-        for (int i = 0; i < length; i++)
-            System.out.print(way[i] + " -> ");
-        System.out.println(way[length]);
+    public int[] getDistance() {
+        return distance;
+    }
 
-        System.out.println("Way weight: " + weight);
-        System.out.println("Way length: " + length);
+    public void printPath() {
+        System.out.print("Path: ");
+        for (Integer p : path)
+            System.out.print(p + " ");
+        System.out.println();
+        System.out.println("Path length: " + length);
+    }
+
+    public void printDistance() {
+        for (int i = 0; i < distance.length; i++) {
+            System.out.println("Distance to " + i + " - " + distance[i]);
+        }
+        System.out.println();
     }
 }

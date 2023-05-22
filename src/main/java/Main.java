@@ -18,23 +18,23 @@ public class Main {
         System.out.print("Graph size: ");
         int n = sc.nextInt();
 
-        System.out.print("Max edge weight: ");
-        int weight = sc.nextInt();
-
-        BFS bfs = new BFS(RandomGraphGenerator.getRandomGraph(n, weight));
+        BFS bfs = new BFS(RandomGraphGenerator.getRandomGraph(n));
 
         System.out.print("Start node: ");
         int start = sc.nextInt();
 
-        System.out.print("End node: ");
-        int end = sc.nextInt();
+        Result result;
 
-        Result result = switch (choice) {
-            case 1 -> bfs.search(start, end);
-            case 2 -> bfs.parallelSearch(start, end);
-            default -> new Result(new int[1], 0);
+        switch (choice) {
+            case 1:
+                result = new Result(bfs.search(start));
+                result.printDistance();
+            case 2:
+                result = new Result(bfs.parallelSearch(start));
+                result.printDistance();
+            default:
+                result = new Result(new int[1]);
+                result.printPath();
         };
-
-        result.print();
     }
 }
