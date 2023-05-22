@@ -1,11 +1,9 @@
-package main.java;
-
 import java.util.List;
 
 public class Result {
-    List<Integer> path;
-    int length;
-    int[] distances;
+    private List<Integer> path;
+    private int length;
+    private int[] distances;
 
     public Result(List<Integer> path) {
         this.path = path;

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BFS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BFS.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/RandomGraphGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RandomGraphGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SearchThread.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +46,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.CorrectWorkTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.java.Main" />
       <module name="BFS" />
@@ -55,8 +64,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CorrectWorkTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BFS" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CorrectWorkTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -71,7 +90,7 @@
       <updated>1684167594502</updated>
       <workItem from="1684167596308" duration="4187000" />
       <workItem from="1684335070233" duration="1196000" />
-      <workItem from="1684760917193" duration="14891000" />
+      <workItem from="1684760917193" duration="17625000" />
     </task>
     <servers />
   </component>
