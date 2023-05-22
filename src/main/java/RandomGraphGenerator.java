@@ -14,6 +14,12 @@ public class RandomGraphGenerator {
             graph[i][i] = 0;
         }
 
+        for (int[] a : graph) {
+            for (int g : a)
+                System.out.print(g + " ");
+            System.out.println();
+        }
+
 
         return graph;
     }

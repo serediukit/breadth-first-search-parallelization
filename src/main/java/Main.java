@@ -27,11 +27,13 @@ public class Main {
 
         switch (choice) {
             case 1:
-                result = new Result(bfs.search(start));
+                result = bfs.search(start);
                 result.printDistance();
+                break;
             case 2:
-                result = new Result(bfs.parallelSearch(start));
+                result = bfs.parallelSearch(start);
                 result.printDistance();
+                break;
             default:
                 result = new Result(new int[1]);
                 result.printPath();
