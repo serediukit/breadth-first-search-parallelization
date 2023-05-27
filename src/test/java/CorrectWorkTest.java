@@ -2,13 +2,13 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CorrectWorkTest {
     final int graphsCount = 10;
-    int[] graphsSize = { 10, 100, 500, 1000, 10000, 20000, 50000, 100000, 1000000, 2000000 };
+    int[] graphsSize = { 10, 25, 100, 250, 500, 1000, 5000, 10000, 15000, 20000 };
 
     private int[][] getGraphFromFile(int testNumber) {
         int[][] g = new int[graphsSize[testNumber]][graphsSize[testNumber]];
@@ -65,5 +65,6 @@ public class CorrectWorkTest {
         BFS bfs = new BFS(new int[1][]);
         Result res = bfs.search(0);
         assertEquals(res.getLength(), -1);
+        assertEquals(res.getPath(), new ArrayList<Integer>());
     }
 }
