@@ -19,8 +19,6 @@ public class BFS {
         if (graph.length == 1)
             return new Result(new int[]{0});
 
-        int[] distances = new int[graph.length];
-        Arrays.fill(distances, -1);
         distances[start] = 0;
 
         Queue<Integer> queue = new LinkedList<>();
@@ -50,7 +48,29 @@ public class BFS {
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
 
-        forkJoinPool.invoke(new BFSRecursiveAction(start));
+        boolean changesMade = true;
+        while (changesMade) {
+            changesMade = false;
+
+            List<BFSRecursiveAction> actions = new ArrayList<>();
+
+            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
+                if (distances[neighbor] != -1)
+                    continue;
+
+                if (graph[start][neighbor] == 1) {
+                    distances[neighbor] = distances[start] + 1;
+                    BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
+                    actions.add(action);
+                    action.fork();
+                    changesMade = true;
+                }
+            }
+
+            for (BFSRecursiveAction action : actions) {
+                action.join();
+            }
+        }
 
         forkJoinPool.shutdown();
 

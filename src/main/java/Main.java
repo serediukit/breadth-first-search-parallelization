@@ -36,7 +36,7 @@ public class Main {
             case 2 -> {
                 try {
                     startTime = System.currentTimeMillis();
-                    result = bfs.parallelSearch(--start, 5);
+                    result = bfs.parallelSearch(--start, 10);
                     endTime = System.currentTimeMillis();
                     result.printDistance();
                 } catch (InterruptedException | ExecutionException e) {
