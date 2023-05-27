@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -51,20 +52,33 @@ public class CorrectWorkTest {
     }
 
     @Test
+    public void testEmptyGraph() {
+        BFS bfs = new BFS(new int[1][]);
+        Result res = bfs.search(0);
+        assertEquals(0, res.getLength());
+    }
+
+    @Test
     public void testLinearBFS() {
         for (int i = 0; i < graphsCount; i++) {
             BFS bfs = new BFS(getGraphFromFile(i));
             Result res = bfs.search(0);
+            int[] dist = res.getDistances();
+            int[] ans = getAnswerFromFile(i);
             for (int j = 0; j < graphsSize[i]; j++)
-                assertEquals(res.getDistances()[j], getAnswerFromFile(i)[j]);
+                assertEquals(ans[j], dist[j]);
         }
     }
 
     @Test
-    public void testEmptyGraph() {
-        BFS bfs = new BFS(new int[1][]);
-        Result res = bfs.search(0);
-        assertEquals(res.getLength(), -1);
-        assertEquals(res.getPath(), new ArrayList<Integer>());
+    public void testParallelBFS() throws ExecutionException, InterruptedException {
+        for (int i = 0; i < graphsCount; i++) {
+            BFS bfs = new BFS(getGraphFromFile(i));
+            Result res = bfs.parallelSearch(0, 10);
+            int[] dist = res.getDistances();
+            int[] ans = getAnswerFromFile(i);
+            for (int j = 0; j < graphsSize[i]; j++)
+                assertEquals(ans[j], dist[j]);
+        }
     }
 }

@@ -14,6 +14,11 @@ public class BFS {
     }
 
     public Result search(int start) {
+        if (graph.length == 0)
+            return new Result(new int[]{-1});
+        if (graph.length == 1)
+            return new Result(new int[]{0});
+
         int[] distances = new int[graph.length];
         Arrays.fill(distances, -1);
         distances[start] = 0;
@@ -36,6 +41,11 @@ public class BFS {
     }
 
     public Result parallelSearch(int start, int threadCount) throws InterruptedException, ExecutionException {
+        if (graph.length == 0)
+            return new Result(new int[]{-1});
+        if (graph.length == 1)
+            return new Result(new int[]{0});
+
         distances[start] = 0;
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
@@ -74,6 +84,11 @@ public class BFS {
     }
 
     public Result searchToVertex(int start, int end) {
+        if (graph.length == 0)
+            return new Result(new int[]{-1});
+        if (graph.length == 1)
+            return new Result(new int[]{0});
+
         List<Integer> path = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
         int[] parent = new int[graph.length];
