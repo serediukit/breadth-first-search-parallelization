@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/FileLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/MainTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
@@ -75,11 +77,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CorrectWorkTest.testSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CorrectWorkTest.testParallelBFS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BFS" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
-      <option name="METHOD_NAME" value="testSize" />
+      <option name="METHOD_NAME" value="testParallelBFS" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,9 +101,9 @@
       <list>
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.CorrectWorkTest.testtt" />
+        <item itemvalue="JUnit.CorrectWorkTest.testParallelBFS" />
         <item itemvalue="JUnit.CorrectWorkTest" />
         <item itemvalue="JUnit.CorrectWorkTest.testGraph" />
-        <item itemvalue="JUnit.CorrectWorkTest.testSize" />
       </list>
     </recent_temporary>
   </component>
@@ -116,7 +118,9 @@
       <workItem from="1684167596308" duration="4187000" />
       <workItem from="1684335070233" duration="1196000" />
       <workItem from="1684760917193" duration="17835000" />
-      <workItem from="1685221086873" duration="8073000" />
+      <workItem from="1685221086873" duration="8930000" />
+      <workItem from="1685230175198" duration="477000" />
+      <workItem from="1685297094566" duration="4727000" />
     </task>
     <servers />
   </component>

@@ -84,11 +84,12 @@ public class CorrectWorkTest {
 
     @Test
     public void testtt() throws ExecutionException, InterruptedException {
-            BFS bfs = new BFS(getGraphFromFile(1));
-            Result res = bfs.parallelSearch(0, 10);
-            int[] dist = res.getDistances();
-            int[] ans = getAnswerFromFile(1);
-            for (int j = 0; j < graphsSize[1]; j++)
-                assertEquals(ans[j], dist[j]);
+        int testNumber = 8;
+        BFS bfs = new BFS(getGraphFromFile(testNumber));
+        Result res = bfs.parallelSearch(0, 10);
+        int[] dist = res.getDistances();
+        int[] ans = getAnswerFromFile(testNumber);
+        for (int j = 0; j < graphsSize[testNumber]; j++)
+            assertEquals(ans[j], dist[j]);
     }
 }

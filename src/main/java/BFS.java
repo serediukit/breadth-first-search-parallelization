@@ -14,9 +14,9 @@ public class BFS {
     }
 
     public Result search(int start) {
-        if (graph.length == 0)
+        if (size == 0)
             return new Result(new int[]{-1});
-        if (graph.length == 1)
+        if (size == 1)
             return new Result(new int[]{0});
 
         distances[start] = 0;
@@ -39,9 +39,9 @@ public class BFS {
     }
 
     public Result parallelSearch(int start, int threadCount) throws InterruptedException, ExecutionException {
-        if (graph.length == 0)
+        if (size == 0)
             return new Result(new int[]{-1});
-        if (graph.length == 1)
+        if (size == 1)
             return new Result(new int[]{0});
 
         distances[start] = 0;
@@ -104,9 +104,9 @@ public class BFS {
     }
 
     public Result searchToVertex(int start, int end) {
-        if (graph.length == 0)
+        if (size == 0)
             return new Result(new int[]{-1});
-        if (graph.length == 1)
+        if (size == 1)
             return new Result(new int[]{0});
 
         List<Integer> path = new ArrayList<>();

@@ -1,13 +1,21 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
 public class Main {
     public static void main(String[] args) {
+        final int THREAD_COUNT = 10;
+
+        Result result;
+        long startTime = 0, endTime = 0, wastedTime, seconds, milliseconds;
+        String formattedTime;
+
         System.out.println("MENU");
         System.out.println("----");
         System.out.println("1. Linear search");
         System.out.println("2. Parallel search");
         System.out.println("3. Search path to Vertex");
+        System.out.println("4. Run test cases and compare");
         System.out.println("----");
 
         System.out.print("Your choice: ");
@@ -23,9 +31,6 @@ public class Main {
         System.out.print("Start node: ");
         int start = sc.nextInt();
 
-        Result result;
-        long startTime = 0, endTime = 0;
-
         switch (choice) {
             case 1 -> {
                 startTime = System.currentTimeMillis();
@@ -36,7 +41,7 @@ public class Main {
             case 2 -> {
                 try {
                     startTime = System.currentTimeMillis();
-                    result = bfs.parallelSearch(--start, 10);
+                    result = bfs.parallelSearch(--start, THREAD_COUNT);
                     endTime = System.currentTimeMillis();
                     result.printDistance();
                 } catch (InterruptedException | ExecutionException e) {
@@ -51,15 +56,13 @@ public class Main {
                 endTime = System.currentTimeMillis();
                 result.printPath();
             }
-            default -> {
-                System.out.println("Incorrect input");
-            }
+            default -> System.out.println("Incorrect input");
         }
 
-        long wastedTime = endTime - startTime;
-        long seconds = wastedTime / 1000;
-        long milliseconds = wastedTime % 1000;
-        String formattedTime = String.format("%02ds:%03dms", seconds, milliseconds);
+        wastedTime = endTime - startTime;
+        seconds = wastedTime / 1000;
+        milliseconds = wastedTime % 1000;
+        formattedTime = String.format("%02ds:%03dms", seconds, milliseconds);
 
         System.out.println("Wasted time: " + formattedTime);
     }
