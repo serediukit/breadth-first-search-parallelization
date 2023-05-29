@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Graph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/BFSThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="JUnit.CorrectWorkTest.testtt">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BFS" />
@@ -56,11 +58,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CorrectWorkTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="BFS" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -97,11 +97,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="JUnit.CorrectWorkTest.testtt" />
         <item itemvalue="JUnit.CorrectWorkTest.testParallelBFS" />
         <item itemvalue="JUnit.CorrectWorkTest.testLinearBFS" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.CorrectWorkTest" />
       </list>
     </recent_temporary>
   </component>
@@ -119,7 +119,7 @@
       <workItem from="1685221086873" duration="8930000" />
       <workItem from="1685230175198" duration="477000" />
       <workItem from="1685297094566" duration="5745000" />
-      <workItem from="1685354072217" duration="1634000" />
+      <workItem from="1685354072217" duration="3729000" />
     </task>
     <servers />
   </component>

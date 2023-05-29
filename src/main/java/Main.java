@@ -15,7 +15,6 @@ public class Main {
         System.out.println("1. Linear search");
         System.out.println("2. Parallel search");
         System.out.println("3. Search path to Vertex");
-        System.out.println("4. Run test cases and compare");
         System.out.println("----");
 
         System.out.print("Your choice: ");

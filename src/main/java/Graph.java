@@ -36,8 +36,8 @@ public class Graph {
         return distances[pos];
     }
 
-    public void setDistancesAt(int pos, int d) {
-        distances[pos] = d;
+    public synchronized void setDistancesAt(int pos, int value) {
+        distances[pos] = value;
     }
 
     public Queue<Integer> getQueue() {
@@ -48,7 +48,7 @@ public class Graph {
         return queue.poll();
     }
 
-    public synchronized void offerQueue(Integer q) {
-        queue.offer(q);
+    public synchronized void offerQueue(Integer value) {
+        queue.offer(value);
     }
 }

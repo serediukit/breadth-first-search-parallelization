@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class BFS {
-    private Graph graph;
+    private final Graph graph;
 
     public BFS(int[][] g) {
         graph = new Graph(g);
@@ -14,8 +14,7 @@ public class BFS {
         if (graph.getSize() == 1)
             return new Result(new int[]{0});
 
-        int[] distances = graph.getDistances();
-        distances[start] = 0;
+        graph.setDistancesAt(start, 0);
 
         graph.offerQueue(start);
 
@@ -23,14 +22,45 @@ public class BFS {
             int current = graph.pollQueue();
 
             for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
-                if (graph.getGraph()[current][neighbor] == 1 && distances[neighbor] == -1) {
+                if (graph.getGraph()[current][neighbor] == 1 && graph.getDistanceAt(neighbor) == -1) {
                     graph.offerQueue(neighbor);
-                    distances[neighbor] = distances[current] + 1;
+                    graph.setDistancesAt(neighbor, graph.getDistanceAt(current) + 1);
                 }
             }
         }
 
-        return new Result(distances);
+        return new Result(graph.getDistances());
+    }
+
+    public Result parallel(int start, int threadCount) {
+        if (graph.getSize() == 0)
+            return new Result(new int[]{-1});
+        if (graph.getSize() == 1)
+            return new Result(new int[]{0});
+
+        graph.setDistancesAt(start, 0);
+
+        List<BFSThread> threads = new ArrayList<>();
+
+        for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
+            if (graph.getGraph()[start][neighbor] == 1 && graph.getDistanceAt(neighbor) == -1) {
+                graph.offerQueue(neighbor);
+                graph.setDistancesAt(neighbor, graph.getDistanceAt(start) + 1);
+                BFSThread thread = new BFSThread(graph, neighbor);
+                thread.start();
+                threads.add(thread);
+            }
+        }
+
+        try {
+            for (BFSThread thread : threads) {
+                thread.join();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return new Result(graph.getDistances());
     }
 
     public Result parallelSearch(int start, int threadCount) throws InterruptedException, ExecutionException {
@@ -39,8 +69,7 @@ public class BFS {
         if (graph.getSize() == 1)
             return new Result(new int[]{0});
 
-        int[] distances = graph.getDistances();
-        distances[start] = 0;
+        graph.setDistancesAt(start, 0);
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
 
@@ -51,11 +80,11 @@ public class BFS {
             List<BFSRecursiveAction> actions = new ArrayList<>();
 
             for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
-                if (distances[neighbor] != -1)
+                if (graph.getDistanceAt(neighbor) != -1)
                     continue;
 
                 if (graph.getGraph()[start][neighbor] == 1) {
-                    distances[neighbor] = distances[start] + 1;
+                    graph.setDistancesAt(neighbor, graph.getDistanceAt(start) + 1);
                     BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
                     actions.add(action);
                     action.fork();
@@ -70,7 +99,7 @@ public class BFS {
 
         forkJoinPool.shutdown();
 
-        return new Result(distances);
+        return new Result(graph.getDistances());
     }
 
     private class BFSRecursiveAction extends RecursiveAction {
