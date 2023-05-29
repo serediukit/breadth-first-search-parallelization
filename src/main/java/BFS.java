@@ -46,7 +46,7 @@ public class BFS {
             if (graph.getGraph()[start][neighbor] == 1 && graph.getDistanceAt(neighbor) == -1) {
                 graph.offerQueue(neighbor);
                 graph.setDistancesAt(neighbor, graph.getDistanceAt(start) + 1);
-                BFSThread thread = new BFSThread(graph, neighbor);
+                BFSThread thread = new BFSThread(graph);
                 thread.start();
                 threads.add(thread);
             }

@@ -7,6 +7,8 @@ public class Graph {
     private final int size;
     private int[] distances;
     private Queue<Integer> queue;
+    public int countThreat = 0;
+    public int activeThreat = 0;
 
     public Graph(int[][] g) {
         graph = g;
@@ -50,5 +52,9 @@ public class Graph {
 
     public synchronized void offerQueue(Integer value) {
         queue.offer(value);
+    }
+
+    public void check() {
+
     }
 }
