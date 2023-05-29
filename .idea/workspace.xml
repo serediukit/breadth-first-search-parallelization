@@ -6,20 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Graph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainCompare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainCompare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RunnableBFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RunnableBFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/TestGraphFileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestGraphFileGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testing/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testing/dto/Graph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testing/runnable/BFSRunnable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testing/runnable/NonSilentBFS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/testing/runnable/SilentBFS.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileLoader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +50,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="JUnit.CorrectWorkTest.testLinearBFS">
+  <component name="RunManager" selected="Application.MainCompare">
     <configuration name="MainCompare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainCompare" />
       <module name="BFS" />
@@ -106,10 +93,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainCompare" />
         <item itemvalue="JUnit.CorrectWorkTest.testLinearBFS" />
         <item itemvalue="JUnit.CorrectWorkTest.testEmptyGraph" />
         <item itemvalue="Application.TestGraphFileGenerator" />
-        <item itemvalue="Application.MainCompare" />
       </list>
     </recent_temporary>
   </component>
@@ -127,7 +114,7 @@
       <workItem from="1685221086873" duration="8930000" />
       <workItem from="1685230175198" duration="477000" />
       <workItem from="1685297094566" duration="5745000" />
-      <workItem from="1685354072217" duration="21556000" />
+      <workItem from="1685354072217" duration="22300000" />
     </task>
     <servers />
   </component>
