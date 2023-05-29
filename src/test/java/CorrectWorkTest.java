@@ -84,7 +84,7 @@ public class CorrectWorkTest {
 
     @Test
     public void testtt() throws ExecutionException, InterruptedException {
-        int testNumber = 8;
+        int testNumber = 1;
         BFS bfs = new BFS(getGraphFromFile(testNumber));
         Result res = bfs.parallelSearch(0, 10);
         int[] dist = res.getDistances();

@@ -2,34 +2,29 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class BFS {
-    private final int[][] graph;
-    private final int size;
-    private int[] distances;
+    private Graph graph;
 
     public BFS(int[][] g) {
-        this.graph = g;
-        this.size = g.length;
-        distances = new int[size];
-        Arrays.fill(distances, -1);
+        graph = new Graph(g);
     }
 
     public Result search(int start) {
-        if (size == 0)
+        if (graph.getSize() == 0)
             return new Result(new int[]{-1});
-        if (size == 1)
+        if (graph.getSize() == 1)
             return new Result(new int[]{0});
 
+        int[] distances = graph.getDistances();
         distances[start] = 0;
 
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(start);
+        graph.offerQueue(start);
 
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
+        while (!graph.getQueue().isEmpty()) {
+            int current = graph.pollQueue();
 
-            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
-                if (graph[current][neighbor] == 1 && distances[neighbor] == -1) {
-                    queue.offer(neighbor);
+            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
+                if (graph.getGraph()[current][neighbor] == 1 && distances[neighbor] == -1) {
+                    graph.offerQueue(neighbor);
                     distances[neighbor] = distances[current] + 1;
                 }
             }
@@ -39,11 +34,12 @@ public class BFS {
     }
 
     public Result parallelSearch(int start, int threadCount) throws InterruptedException, ExecutionException {
-        if (size == 0)
+        if (graph.getSize() == 0)
             return new Result(new int[]{-1});
-        if (size == 1)
+        if (graph.getSize() == 1)
             return new Result(new int[]{0});
 
+        int[] distances = graph.getDistances();
         distances[start] = 0;
 
         ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
@@ -54,11 +50,11 @@ public class BFS {
 
             List<BFSRecursiveAction> actions = new ArrayList<>();
 
-            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
+            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
                 if (distances[neighbor] != -1)
                     continue;
 
-                if (graph[start][neighbor] == 1) {
+                if (graph.getGraph()[start][neighbor] == 1) {
                     distances[neighbor] = distances[start] + 1;
                     BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
                     actions.add(action);
@@ -88,9 +84,9 @@ public class BFS {
         protected void compute() {
             List<BFSRecursiveAction> actions = new ArrayList<>();
 
-            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
-                if (graph[vertex][neighbor] == 1 && (distances[neighbor] == -1 || distances[neighbor] > distances[vertex] + 1)) {
-                    distances[neighbor] = distances[vertex] + 1;
+            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
+                if (graph.getGraph()[vertex][neighbor] == 1 && (graph.getDistanceAt(neighbor) == -1 || graph.getDistanceAt(neighbor) > graph.getDistanceAt(vertex) + 1)) {
+                    graph.setDistancesAt(neighbor, graph.getDistanceAt(vertex) + 1);
                     BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
                     actions.add(action);
                     action.fork();
@@ -104,15 +100,15 @@ public class BFS {
     }
 
     public Result searchToVertex(int start, int end) {
-        if (size == 0)
+        if (graph.getSize() == 0)
             return new Result(new int[]{-1});
-        if (size == 1)
+        if (graph.getSize() == 1)
             return new Result(new int[]{0});
 
         List<Integer> path = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
-        int[] parent = new int[graph.length];
-        boolean[] visited = new boolean[graph.length];
+        int[] parent = new int[graph.getSize()];
+        boolean[] visited = new boolean[graph.getSize()];
 
         queue.offer(start);
         visited[start] = true;
@@ -130,8 +126,8 @@ public class BFS {
                 break;
             }
 
-            for (int neighbor = 0; neighbor < graph.length; neighbor++) {
-                if (graph[current][neighbor] == 1 && !visited[neighbor]) {
+            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
+                if (graph.getGraph()[current][neighbor] == 1 && !visited[neighbor]) {
                     queue.offer(neighbor);
                     visited[neighbor] = true;
                     parent[neighbor] = current;

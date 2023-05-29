@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/FileLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/MainTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Graph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +48,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.CorrectWorkTest.testtt">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="BFS" />
@@ -67,11 +65,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CorrectWorkTest.testGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CorrectWorkTest.testLinearBFS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BFS" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
-      <option name="METHOD_NAME" value="testGraph" />
+      <option name="METHOD_NAME" value="testLinearBFS" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,11 +97,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.CorrectWorkTest.testtt" />
         <item itemvalue="JUnit.CorrectWorkTest.testParallelBFS" />
+        <item itemvalue="JUnit.CorrectWorkTest.testLinearBFS" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.CorrectWorkTest" />
-        <item itemvalue="JUnit.CorrectWorkTest.testGraph" />
       </list>
     </recent_temporary>
   </component>
@@ -120,7 +118,8 @@
       <workItem from="1684760917193" duration="17835000" />
       <workItem from="1685221086873" duration="8930000" />
       <workItem from="1685230175198" duration="477000" />
-      <workItem from="1685297094566" duration="4727000" />
+      <workItem from="1685297094566" duration="5745000" />
+      <workItem from="1685354072217" duration="1634000" />
     </task>
     <servers />
   </component>
