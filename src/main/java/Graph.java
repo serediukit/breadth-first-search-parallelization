@@ -1,24 +1,24 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Graph {
-    private final int[][] graph;
+    private final byte[][] graph;
     private final int size;
     private int[] distances;
-    private Queue<Integer> queue;
-    public int countThreat = 0;
-    public int activeThreat = 0;
+    public List<Integer> nodes;
 
-    public Graph(int[][] g) {
+    public Graph(byte[][] g) {
         graph = g;
         size = g.length;
-        queue = new LinkedList<>();
         distances = new int[size];
         Arrays.fill(distances, -1);
+        this.nodes = IntStream.rangeClosed(0, size - 1).boxed().collect(Collectors.toList());
     }
 
-    public int[][] getGraph() {
+    public byte[][] getGraph() {
         return graph;
     }
 
@@ -30,7 +30,7 @@ public class Graph {
         return distances;
     }
 
-    public synchronized void setDistances(int[] dist) {
+    public void setDistances(int[] dist) {
         distances = dist;
     }
 
@@ -38,23 +38,17 @@ public class Graph {
         return distances[pos];
     }
 
-    public synchronized void setDistancesAt(int pos, int value) {
+    public void setDistancesAt(int pos, int value) {
         distances[pos] = value;
     }
 
-    public Queue<Integer> getQueue() {
-        return queue;
-    }
-
-    public synchronized Integer pollQueue() {
-        return queue.poll();
-    }
-
-    public synchronized void offerQueue(Integer value) {
-        queue.offer(value);
-    }
-
-    public void check() {
-
+    public List<Integer> getAdjacent(int vertix) {
+        List<Integer> adjacent = new ArrayList<>();
+        for (int i = 0; i < this.size; i++) {
+            if (graph[vertix][i] == 1) {
+                adjacent.add(i);
+            }
+        }
+        return adjacent;
     }
 }

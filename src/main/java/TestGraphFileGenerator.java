@@ -1,5 +1,6 @@
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class TestGraphFileGenerator {
     private static String getString(int[] array) {
@@ -18,7 +19,7 @@ public class TestGraphFileGenerator {
         int[] graphsSize = { 10, 25, 100, 250, 500, 1000, 5000, 10000, 15000, 20000 };
 
         for (int fileNumber = 0; fileNumber < 10; fileNumber++) {
-            int[][] matrix = RandomGraphGenerator.getRandomGraph(graphsSize[fileNumber]);
+            byte[][] matrix = RandomGraphGenerator.getRandomGraph(graphsSize[fileNumber]);
 
             String filePath = "src\\main\\resources\\test_graph_" + fileNumber + ".txt";
 
@@ -26,8 +27,8 @@ public class TestGraphFileGenerator {
                 FileWriter fileWriter = new FileWriter(filePath);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-                for (int[] array : matrix) {
-                    for (int a : array) {
+                for (byte[] array : matrix) {
+                    for (byte a : array) {
                         bufferedWriter.write(a + " ");
                     }
                     bufferedWriter.newLine();

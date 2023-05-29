@@ -1,29 +1,27 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.print("Graph size: ");
-        Scanner sc = new Scanner(System.in);
-        int size = sc.nextInt();
-        int[][] graph = RandomGraphGenerator.getRandomGraph(size);
+        final int THREAD_COUNT = 20;
 
-        BFS lbfs = new BFS(graph);
-        Result lres = lbfs.search(0);
+        long startTime = 0, endTime = 0, wastedTime, seconds, milliseconds;
+        String formattedTime;
+        int testNumber = 8;
 
-        BFS bfs = new BFS(graph);
-        long startTime = System.currentTimeMillis();
-        Result res = bfs.parallel(0, 10);
-        long endTime = System.currentTimeMillis();
-        res.printDistance();
+        byte[][] g = FileLoader.getGraphFromFile(testNumber);
+        try {
+            BFS parallelBFS = new BFS(g);
+            startTime = System.currentTimeMillis();
+            Result parallelRes = parallelBFS.parallelSearch(0, THREAD_COUNT);
+            endTime = System.currentTimeMillis();
+            wastedTime = endTime - startTime;
+            seconds = wastedTime / 1000;
+            milliseconds = wastedTime % 1000;
+            formattedTime = String.format("%02ds:%03dms", seconds, milliseconds);
+            System.out.println("Parallel search time for " + testNumber + " test: " + formattedTime);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
 
-        long wastedTime = endTime - startTime;
-        long seconds = wastedTime / 1000;
-        long milliseconds = wastedTime % 1000;
-        String formattedTime = String.format("%02ds:%03dms", seconds, milliseconds);
-
-        System.out.println("Parallel wasted time: " + formattedTime);
-
-        System.out.println(Arrays.equals(lres.getDistances(), res.getDistances()));
     }
 }

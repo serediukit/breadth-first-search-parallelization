@@ -11,8 +11,8 @@ public class CorrectWorkTest {
     final int graphsCount = 10;
     int[] graphsSize = { 10, 25, 100, 250, 500, 1000, 5000, 10000, 15000, 20000 };
 
-    private int[][] getGraphFromFile(int testNumber) {
-        int[][] g = new int[graphsSize[testNumber]][graphsSize[testNumber]];
+    private byte[][] getGraphFromFile(int testNumber) {
+        byte[][] g = new byte[graphsSize[testNumber]][graphsSize[testNumber]];
         File file = new File("src\\main\\resources\\test_graph_" + testNumber + ".txt");
 
         try {
@@ -20,7 +20,7 @@ public class CorrectWorkTest {
 
             for (int i = 0; i < graphsSize[testNumber]; i++) {
                 for (int j = 0; j < graphsSize[testNumber]; j++) {
-                    g[i][j] = scanner.nextInt();
+                    g[i][j] = scanner.nextByte();
                 }
             }
 
@@ -53,7 +53,7 @@ public class CorrectWorkTest {
 
     @Test
     public void testEmptyGraph() {
-        BFS bfs = new BFS(new int[1][]);
+        BFS bfs = new BFS(new byte[1][]);
         Result res = bfs.search(0);
         assertEquals(0, res.getLength());
     }

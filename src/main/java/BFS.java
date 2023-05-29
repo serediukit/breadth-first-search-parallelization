@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 public class BFS {
     private final Graph graph;
 
-    public BFS(int[][] g) {
+    public BFS(byte[][] g) {
         graph = new Graph(g);
     }
 
@@ -15,49 +15,20 @@ public class BFS {
             return new Result(new int[]{0});
 
         graph.setDistancesAt(start, 0);
+        Queue<Integer> queue = new LinkedList<>();
 
-        graph.offerQueue(start);
+        queue.offer(start);
 
-        while (!graph.getQueue().isEmpty()) {
-            int current = graph.pollQueue();
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
 
-            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
+            List<Integer> neighborList = graph.getAdjacent(current);
+            for (Integer neighbor : neighborList) {
                 if (graph.getGraph()[current][neighbor] == 1 && graph.getDistanceAt(neighbor) == -1) {
-                    graph.offerQueue(neighbor);
+                    queue.offer(neighbor);
                     graph.setDistancesAt(neighbor, graph.getDistanceAt(current) + 1);
                 }
             }
-        }
-
-        return new Result(graph.getDistances());
-    }
-
-    public Result parallel(int start, int threadCount) {
-        if (graph.getSize() == 0)
-            return new Result(new int[]{-1});
-        if (graph.getSize() == 1)
-            return new Result(new int[]{0});
-
-        graph.setDistancesAt(start, 0);
-
-        List<BFSThread> threads = new ArrayList<>();
-
-        for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
-            if (graph.getGraph()[start][neighbor] == 1 && graph.getDistanceAt(neighbor) == -1) {
-                graph.offerQueue(neighbor);
-                graph.setDistancesAt(neighbor, graph.getDistanceAt(start) + 1);
-                BFSThread thread = new BFSThread(graph);
-                thread.start();
-                threads.add(thread);
-            }
-        }
-
-        try {
-            for (BFSThread thread : threads) {
-                thread.join();
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
         return new Result(graph.getDistances());
@@ -71,61 +42,24 @@ public class BFS {
 
         graph.setDistancesAt(start, 0);
 
-        ForkJoinPool forkJoinPool = new ForkJoinPool(threadCount);
+        ExecutorService executor = Executors.newFixedThreadPool(threadCount);
+        Queue<Integer> queue = new LinkedBlockingQueue<>();
+        Set<Integer> set = Collections.newSetFromMap(new ConcurrentHashMap<>(graph.getSize()));
 
-        boolean changesMade = true;
-        while (changesMade) {
-            changesMade = false;
-
-            List<BFSRecursiveAction> actions = new ArrayList<>();
-
-            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
-                if (graph.getDistanceAt(neighbor) != -1)
-                    continue;
-
-                if (graph.getGraph()[start][neighbor] == 1) {
-                    graph.setDistancesAt(neighbor, graph.getDistanceAt(start) + 1);
-                    BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
-                    actions.add(action);
-                    action.fork();
-                    changesMade = true;
-                }
-            }
-
-            for (BFSRecursiveAction action : actions) {
-                action.join();
-            }
+        for (int i = 0; i < threadCount; i++) {
+            Runnable worker = new RunnableBFS(graph, queue, set, i + 1);
+            executor.execute(worker);
         }
 
-        forkJoinPool.shutdown();
+        executor.shutdown();
+
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException е) {
+            System.out.println();
+        }
 
         return new Result(graph.getDistances());
-    }
-
-    private class BFSRecursiveAction extends RecursiveAction {
-        private final int vertex;
-
-        public BFSRecursiveAction(int vertex) {
-            this.vertex = vertex;
-        }
-
-        @Override
-        protected void compute() {
-            List<BFSRecursiveAction> actions = new ArrayList<>();
-
-            for (int neighbor = 0; neighbor < graph.getSize(); neighbor++) {
-                if (graph.getGraph()[vertex][neighbor] == 1 && (graph.getDistanceAt(neighbor) == -1 || graph.getDistanceAt(neighbor) > graph.getDistanceAt(vertex) + 1)) {
-                    graph.setDistancesAt(neighbor, graph.getDistanceAt(vertex) + 1);
-                    BFSRecursiveAction action = new BFSRecursiveAction(neighbor);
-                    actions.add(action);
-                    action.fork();
-                }
-            }
-
-            for (BFSRecursiveAction action : actions) {
-                action.join();
-            }
-        }
     }
 
     public Result searchToVertex(int start, int end) {

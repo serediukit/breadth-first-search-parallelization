@@ -5,15 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/RunnableBFS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/testing/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/testing/dto/Graph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/testing/runnable/BFSRunnable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/testing/runnable/NonSilentBFS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/testing/runnable/SilentBFS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BFSThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFSThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BFSThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/FileLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Graph.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Graph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainCompare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/RandomGraphGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RandomGraphGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TestGraphFileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TestGraphFileGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -56,29 +72,36 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testing.Main" />
+      <module name="BFS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainParallelTesting" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testing.MainParallelTesting" />
+      <module name="BFS" />
+      <option name="PROGRAM_PARAMETERS" value="Xmx2g" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="BFS" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CorrectWorkTest.testLinearBFS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BFS" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
-      <option name="METHOD_NAME" value="testLinearBFS" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CorrectWorkTest.testParallelBFS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BFS" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
-      <option name="METHOD_NAME" value="testParallelBFS" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -93,13 +116,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MainParallelTesting" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="JUnit.CorrectWorkTest.testtt" />
+      <item itemvalue="Application.Main (1)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Test" />
-        <item itemvalue="JUnit.CorrectWorkTest.testtt" />
-        <item itemvalue="JUnit.CorrectWorkTest.testParallelBFS" />
-        <item itemvalue="JUnit.CorrectWorkTest.testLinearBFS" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.MainParallelTesting" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.CorrectWorkTest.testtt" />
       </list>
     </recent_temporary>
   </component>
@@ -117,7 +147,7 @@
       <workItem from="1685221086873" duration="8930000" />
       <workItem from="1685230175198" duration="477000" />
       <workItem from="1685297094566" duration="5745000" />
-      <workItem from="1685354072217" duration="8237000" />
+      <workItem from="1685354072217" duration="17720000" />
     </task>
     <servers />
   </component>

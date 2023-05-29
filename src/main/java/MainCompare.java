@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
-public class MainTest {
+public class MainCompare {
     public static void main(String[] args) {
         final int THREAD_COUNT = 10;
 
@@ -11,7 +11,7 @@ public class MainTest {
 
         System.out.println("Running test cases\n");
         for (int testNumber = 0; testNumber < 10; testNumber++) {
-            int[][] g = FileLoader.getGraphFromFile(testNumber);
+            byte[][] g = FileLoader.getGraphFromFile(testNumber);
             BFS linearBFS = new BFS(g);
             startTime = System.currentTimeMillis();
             Result linearRes = linearBFS.search(0);
