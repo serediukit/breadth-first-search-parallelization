@@ -1,24 +1,15 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 public class TestGraphFileGenerator {
-    private static String getString(int[] array) {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < array.length - 1; i++) {
-            sb.append(array[i]);
-            sb.append(" ");
-        }
-        sb.append(array[array.length - 1]);
-
-        return sb.toString();
-    }
 
     public static void main(String[] args) {
-        int[] graphsSize = { 10, 25, 100, 250, 500, 1000, 5000, 10000, 15000, 20000 };
+        int[] graphsSize = { 10, 25, 100, 250, 500, 1000, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000 };
 
-        for (int fileNumber = 0; fileNumber < 10; fileNumber++) {
+        for (int fileNumber = 0; fileNumber < graphsSize.length; fileNumber++) {
             byte[][] matrix = RandomGraphGenerator.getRandomGraph(graphsSize[fileNumber]);
 
             String filePath = "src\\main\\resources\\test_graph_" + fileNumber + ".txt";
@@ -42,8 +33,12 @@ public class TestGraphFileGenerator {
             }
 
             BFS bfs = new BFS(matrix);
-            Result res = bfs.search(0);
-            int[] distances = res.getDistances();
+            Result res = null;
+            try {
+                res = bfs.threadSearch(1);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
 
             filePath = "src\\main\\resources\\test_answer_" + fileNumber + ".txt";
 
@@ -51,8 +46,11 @@ public class TestGraphFileGenerator {
                 FileWriter fileWriter = new FileWriter(filePath);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-                String str = getString(distances);
-                System.out.println(str);
+                assert res != null;
+                String str = res.getVisited()
+                        .stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(" "));
                 bufferedWriter.write(str);
 
                 bufferedWriter.close();

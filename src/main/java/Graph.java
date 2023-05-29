@@ -30,10 +30,6 @@ public class Graph {
         return distances;
     }
 
-    public void setDistances(int[] dist) {
-        distances = dist;
-    }
-
     public int getDistanceAt(int pos) {
         return distances[pos];
     }

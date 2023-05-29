@@ -8,7 +8,7 @@ public class BFS {
         graph = new Graph(g);
     }
 
-    public Result search(int start) {
+    public Result serialSearch(int start) {
         if (graph.getSize() == 0)
             return new Result(new int[]{-1});
         if (graph.getSize() == 1)
@@ -34,32 +34,31 @@ public class BFS {
         return new Result(graph.getDistances());
     }
 
-    public Result parallelSearch(int start, int threadCount) throws InterruptedException, ExecutionException {
+    public Result threadSearch(int threadCount) throws InterruptedException, ExecutionException {
         if (graph.getSize() == 0)
             return new Result(new int[]{-1});
         if (graph.getSize() == 1)
             return new Result(new int[]{0});
 
-        graph.setDistancesAt(start, 0);
-
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         Queue<Integer> queue = new LinkedBlockingQueue<>();
-        Set<Integer> set = Collections.newSetFromMap(new ConcurrentHashMap<>(graph.getSize()));
+        Set<Integer> visitedSet = Collections.newSetFromMap(new ConcurrentHashMap<>(graph.getSize()));
 
         for (int i = 0; i < threadCount; i++) {
-            Runnable worker = new RunnableBFS(graph, queue, set, i + 1);
+            Runnable worker = new RunnableBFS(graph, queue, visitedSet, i);
             executor.execute(worker);
         }
 
         executor.shutdown();
 
         try {
+            //noinspection ResultOfMethodCallIgnored
             executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
-        } catch (InterruptedException е) {
-            System.out.println();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        return new Result(graph.getDistances());
+        return new Result(visitedSet);
     }
 
     public Result searchToVertex(int start, int end) {

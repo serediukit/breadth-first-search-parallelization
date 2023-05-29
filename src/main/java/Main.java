@@ -32,16 +32,16 @@ public class Main {
         switch (choice) {
             case 1 -> {
                 startTime = System.currentTimeMillis();
-                result = bfs.search(--start);
+                result = bfs.serialSearch(--start);
                 endTime = System.currentTimeMillis();
                 result.printDistance();
             }
             case 2 -> {
                 try {
                     startTime = System.currentTimeMillis();
-                    result = bfs.parallelSearch(--start, THREAD_COUNT);
+                    result = bfs.threadSearch(THREAD_COUNT);
                     endTime = System.currentTimeMillis();
-                    result.printDistance();
+                    result.printVisited();
                 } catch (InterruptedException | ExecutionException e) {
                     e.printStackTrace();
                 }
