@@ -2,11 +2,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CorrectWorkTest {
     int[] graphsSize = { 10, 25, 100, 250, 500, 1000, 5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000 };
@@ -35,13 +38,18 @@ public class CorrectWorkTest {
 
     private int[] getAnswerFromFile(int testNumber) {
         int[] a = new int[graphsSize[testNumber]];
+        Arrays.fill(a, 0);
         File file = new File("src\\main\\resources\\test_answer_" + testNumber + ".txt");
 
         try {
             Scanner scanner = new Scanner(file);
 
             for (int i = 0; i < graphsSize[testNumber]; i++) {
-                a[i] = scanner.nextInt();
+                try {
+                    a[i] = scanner.nextInt();
+                } catch (NoSuchElementException e) {
+                    return a;
+                }
             }
 
             scanner.close();

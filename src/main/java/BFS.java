@@ -39,6 +39,8 @@ public class BFS {
             return new Result(new int[]{-1});
         if (graph.getSize() == 1)
             return new Result(new int[]{0});
+        if (threadCount > graph.getSize())
+            threadCount = graph.getSize();
 
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         Queue<Integer> queue = new LinkedBlockingQueue<>();

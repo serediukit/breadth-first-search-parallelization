@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d31a5461-b47d-45a5-9905-b4e227dde54a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/AlgorithmTime.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ThreadCountTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CorrectWorkTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +53,14 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.MainCompare">
+  <component name="RunManager" selected="Application.ThreadCountTest">
+    <configuration name="AlgorithmTime" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AlgorithmTime" />
+      <module name="BFS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainCompare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainCompare" />
       <module name="BFS" />
@@ -57,19 +68,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestGraphFileGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TestGraphFileGenerator" />
+    <configuration name="ThreadCountTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ThreadCountTest" />
       <module name="BFS" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CorrectWorkTest.testEmptyGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CorrectWorkTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BFS" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CorrectWorkTest" />
-      <option name="METHOD_NAME" value="testEmptyGraph" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -86,16 +96,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.MainCompare" />
-      <item itemvalue="Application.TestGraphFileGenerator" />
-      <item itemvalue="JUnit.CorrectWorkTest.testEmptyGraph" />
       <item itemvalue="JUnit.CorrectWorkTest.testLinearBFS" />
+      <item itemvalue="JUnit.CorrectWorkTest" />
+      <item itemvalue="Application.AlgorithmTime" />
+      <item itemvalue="Application.ThreadCountTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ThreadCountTest" />
+        <item itemvalue="JUnit.CorrectWorkTest" />
+        <item itemvalue="Application.AlgorithmTime" />
         <item itemvalue="Application.MainCompare" />
         <item itemvalue="JUnit.CorrectWorkTest.testLinearBFS" />
-        <item itemvalue="JUnit.CorrectWorkTest.testEmptyGraph" />
-        <item itemvalue="Application.TestGraphFileGenerator" />
       </list>
     </recent_temporary>
   </component>
@@ -114,6 +126,7 @@
       <workItem from="1685230175198" duration="477000" />
       <workItem from="1685297094566" duration="5745000" />
       <workItem from="1685354072217" duration="23536000" />
+      <workItem from="1685441517050" duration="13938000" />
     </task>
     <servers />
   </component>
